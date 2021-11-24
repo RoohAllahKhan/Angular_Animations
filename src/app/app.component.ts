@@ -20,19 +20,30 @@ import { Component } from '@angular/core';
     trigger('wildState', [
       state('normal', style({
         'background-color': 'red',
+        "border-radius": "0",
         transform: 'translateX(0) scale(1)'
       })),
       state('highlighted', style({
         'background-color': 'blue',
+        "border-radius": "0",
         transform: 'translateX(100px) scale(1)'
       })),
       state('shrunken', style({
         'background-color': 'green',
+        "border-radius": "0",
         transform: 'translateX(0px) scale(0.5)'
       })),
       transition('normal => highlighted', animate(300)),
       transition('highlighted => normal', animate(800)),
-      transition('shrunken <=> *', animate(500)),
+      transition('shrunken <=> *', [
+        style({
+          'background-color': 'orange'
+        }),
+        animate(1000, style({
+          'border-radius': '50px'
+        })),
+        animate(500)
+      ]),
     ])
   ]
 })
